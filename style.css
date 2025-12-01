@@ -1,0 +1,70 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#b3e5ff, #fcd6d9);
+    font-family: 'Verdana';
+    overflow-x: hidden;
+}
+
+.container {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #ff5757;
+}
+
+.date, .place {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn {
+    background: #ff8c8c;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+/* PECES ESTILO GHIBLI (SIMPLIFICADOS) */
+
+.fish {
+    width: 60px;
+    height: 35px;
+    background: #ffabab;
+    border-radius: 60% 40% 40% 60%;
+    position: absolute;
+    animation: swim 12s infinite linear;
+}
+
+.fish::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: #ffabab;
+    border-radius: 50%;
+    position: absolute;
+    right: -10px;
+    top: 8px;
+}
+
+.fish1 { top: 200px; left: -80px; animation-delay: 0s; }
+.fish2 { top: 400px; left: -120px; animation-delay: 3s; }
+.fish3 { top: 600px; left: -100px; animation-delay: 6s; }
+
+@keyframes swim {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(120vw); }
+}
