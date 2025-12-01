@@ -8,19 +8,17 @@
   <style>
     body{
 
-       background-image: url("backgroundp.jpg"); /* Reemplaza con la ruta de tu imagen */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  background-size: cover; /* Asegura que la imagen cubra todo el fondo */
-  background-position: center; /* Centra la imagen en la pantalla */
-     
-  margin:0;
+margin:0;
   font-family:'Quicksand',sans-serif;
 
-  /* 🔵 Fondo animado del mar */
-  background:linear-gradient(120deg,#8fd3ff,#5ebdff,#9fe0ff),
-              url("backgroundp.jpg");  /* ← AQUI CAMBIAS TU IMAGEN */
+  /* 🔵 Fondo con imagen + degradado animado encima */
+  background-image:
+      linear-gradient(120deg,#8fd3ff,#5ebdff,#9fe0ff),
+      url("backgroundp.jpg");  /* ← AQUI CAMBIAS TU IMAGEN */
   background-size:400% 400%, cover;
-  background-position:center;
+  background-position:center, center;
+  background-repeat:no-repeat;
+
   animation:mar 18s infinite;
 
   overflow-x:hidden;
@@ -50,10 +48,31 @@
     .jelly:after{content:"";position:absolute;bottom:-20px;left:10px;width:20px;height:20px;border-radius:50%;background:#ff9fd9;filter:blur(2px)}
     @keyframes jellyMove{0%{transform:translateY(0)}50%{transform:translateY(-40px)}100%{transform:translateY(0)}}
     /* SLIDER */
-    .slider{max-width:420px;margin:40px auto;border-radius:20px;overflow:hidden}
-    .track{display:flex;width:1500%;animation:scroll 400s linear infinite}
-    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    .slider img{width:80%;object-fit:cover}
+    .slider{
+  max-width:420px;
+  margin:40px auto;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.track{
+  display:flex;
+  width:2000%;               /* 20 fotos = 2000% */
+  animation:scroll 200s linear infinite;  /* Cambia el tiempo aquí */
+}
+
+@keyframes scroll{
+  from { transform:translateX(0); }
+  to   { transform:translateX(-95%); } 
+  /* -95% asegura pasar TODA LA TIRA SIN DEJAR BUCLES FEOS */
+}
+
+.slider img{
+  width:100%;
+  object-fit:cover;
+  cursor:pointer;  /* por si quieres ampliar imágenes luego */
+}
+
     #modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:999}
     #modal img{max-width:90%;border-radius:20px}
     /* CONTENEDOR PARA PONER PECES Y BURBUJAS ENCIMA DEL CONTENIDO */
