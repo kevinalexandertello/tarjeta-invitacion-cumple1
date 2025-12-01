@@ -1,29 +1,250 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invitación - Tahily</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primer Año de Tahily</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #a3d9ff;
+      font-family: 'Quicksand', sans-serif;
+      overflow-x: hidden;
+    }
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      color: white;
+      position: relative;
+      border-radius: 25px;
+      border: 8px solid rgba(255,255,255,0.8);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('TU-IMAGEN-AQUI.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.35;
+      z-index: -1;
+      border-radius: 25px;
+    }
+    h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.6rem;
+    }
+    .contador {
+      margin-top: 20px;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+    .gallery {
+      margin: 40px auto;
+      max-width: 100%;
+      overflow: hidden;
+      position: relative;
+      border-radius: 30px;
+      border: 10px solid rgba(255,255,255,0.7);
+      backdrop-filter: blur(3px);
+    }
+    .gallery-track {
+      display: flex;
+      gap: 20px;
+      animation: scroll 35s linear infinite;
+    }
+    .gallery img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 6px solid rgba(255,255,255,0.7);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .info-box {
+      background: white;
+      margin: 30px;
+      padding: 20px;
+      border-radius: 25px;
+      border: 6px solid rgba(255,255,255,0.8);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.85);
+      border: none;
+      padding: 14px;
+      border-radius: 50%;
+      font-size: 22px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      .gallery img { width: 130px; height: 130px; }
+      .info-box { margin: 15px; padding: 15px; }
+      .music-btn { bottom: 10px; right: 10px; }
+    }
+    /* Olas animadas suaves */
+    .olas {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: url('olas.png') repeat-x;
+      animation: moverOlas 12s linear infinite;
+      opacity: 0.35;
+    }
+    @keyframes moverOlas {
+      from { background-position-x: 0; }
+      to { background-position-x: -1400px; }
+    }
+    /* 🔵 Borde acuarelado para secciones */
+  .info-box {
+      border: 8px solid rgba(255,255,255,0.6);
+      border-radius: 30px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+  }
+
+  /* Degradado dinámico estilo mar */
+  body {
+      background: linear-gradient(120deg, #8fd3ff, #5ebdff, #9fe0ff);
+      background-size: 400% 400%;
+      animation: marFluido 16s ease infinite;
+  }
+
+  @keyframes marFluido {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+  }
+
+  /* Olas animadas al final del sitio */
+  .olas-container {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      overflow: hidden;
+      margin-top: 50px;
+  }
+
+  .ola {
+      position: absolute;
+      bottom: 0;
+      width: 200%;
+      height: 100px;
+      background: rgba(255,255,255,0.55);
+      border-radius: 100%;
+      animation: moverOla 9s linear infinite;
+      transform: translateX(0);
+  }
+
+  .ola:nth-child(2) {
+      background: rgba(255,255,255,0.35);
+      height: 85px;
+      animation-duration: 13s;
+  }
+
+  @keyframes moverOla {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+  }
+
+</style>
 </head>
 <body>
-<audio id="music" src="songta.m4a"></audio>
 
-<div class="container">
-    <h1>Primer Añito de Tahily</h1>
-    <p class="date">9 de Diciembre — 17:30 a 20:00 hs</p>
-    <p class="place">Manuel Videla 65, Rodeo de la Cruz</p>
+  <audio id="bg-music" src="songta.m4a" autoplay loop></audio>
+  <button class="music-btn" id="toggleMusic">🔊</button>
 
-    <div class="buttons">
-        <a class="btn" href="https://maps.app.goo.gl/r6R3PtshPXQuKHnC7" target="_blank">Cómo llegar</a>
-        <a class="btn" href="https://wa.me/542612519528" target="_blank">Confirmar asistencia</a>
-        <button class="btn" onclick="document.getElementById('music').play()">Reproducir música</button>
+  <section class="hero">
+    <h1>El Primer Año de Tahily</h1>
+    <p>¡Ven a celebrar este día tan especial con nosotros!</p>
+    <div class="contador" id="contador"></div>
+  </section>
+
+  <section class="info-box">
+    <h2>📍 Dirección del Evento</h2>
+    <p>Videla 65</p>
+    <a href="https://maps.app.goo.gl/75C3GWKKCqGDRBM1A" target="_blank">👉 Ver ubicación en Google Maps</a>
+  </section>
+
+  <section class="info-box">
+    <h2>🕓 Horario</h2>
+    <p>De 17:30 hs a 20:00 hs</p>
+  </section>
+
+  <section class="gallery">
+    <h2 style="text-align:center; margin-bottom:20px; font-family:'Fredoka One'; font-size:2rem;">Tahily a lo largo del año</h2>
+    <div class="gallery-track">
+      <img src="FOTO1.jpg" alt="Tahily 1">
+      <img src="FOTO2.jpg" alt="Tahily 2">
+      <img src="FOTO3.jpg" alt="Tahily 3">
+      <img src="FOTO4.jpg" alt="Tahily 4">
+      <img src="FOTO5.jpg" alt="Tahily 5">
+      <img src="FOTO6.jpg" alt="Tahily 6">
+      <img src="FOTO7.jpg" alt="Tahily 7">
+      <img src="FOTO8.jpg" alt="Tahily 8">
+      <img src="FOTO9.jpg" alt="Tahily 9">
+      <img src="FOTO10.jpg" alt="Tahily 10">
     </div>
-</div>
+  </section>
 
-<div class="fish fish1"></div>
-<div class="fish fish2"></div>
-<div class="fish fish3"></div>
+  <section class="info-box">
+    <h2>📞 Confirmar Asistencia</h2>
+    <p class="whatsapp">WhatsApp: <a href="https://wa.me/542612519528" target="_blank">+54 261 251 9528</a></p>
+  </section>
+
+  <div class="olas"></div>
+
+  <script>
+    const fechaEvento = new Date("December 9, 2025 17:30:00").getTime();
+    const timer = setInterval(() => {
+      let ahora = new Date().getTime();
+      let diff = fechaEvento - ahora;
+      if (diff <= 0) {
+        document.getElementById('contador').innerHTML = "¡Hoy es el gran día! 🎉";
+        clearInterval(timer);
+        return;
+      }
+      let dias = Math.floor(diff / (1000*60*60*24));
+      let horas = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+      let minutos = Math.floor((diff % (1000*60*60)) / (1000*60));
+      let segundos = Math.floor((diff % (1000*60)) / 1000);
+      document.getElementById('contador').innerHTML = `${dias} días, ${horas}h ${minutos}m ${segundos}s`;
+    }, 1000);
+
+    const music = document.getElementById('bg-music');
+    const toggle = document.getElementById('toggleMusic');
+    toggle.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        toggle.textContent = '🔊';
+      } else {
+        music.pause();
+        toggle.textContent = '🔈';
+      }
+    });
+  </script>
+
+  <!-- Olas animadas -->
+  <div class="olas-container">
+    <div class="ola"></div>
+    <div class="ola"></div>
+  </div>
 
 </body>
 </html>
