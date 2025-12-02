@@ -115,7 +115,11 @@
 
 <div class="box bg1">
   <h1>Mi Primer Año: Tahily</h1>
-  <p style="text-align:center">¡Ven a celebrar este día tan especial!</p>
+  <p style="text-align:center">¡Ven a celebrar este día tan especial el 9 de Diciembre!</p>
+  <div id="contador" style="text-align:center;font-size:1.3rem;font-weight:600;margin-top:10px;">
+  Cargando días restantes...
+</div>
+
 </div>
 
 <div class="box bg2">
@@ -220,6 +224,27 @@ btn.addEventListener('click', () => {
     btn.textContent = "🔇";
   }
 });
+  /* CONTADOR DE DÍAS */
+function actualizarContador() {
+  const hoy = new Date();
+  const evento = new Date("2025-12-09T00:00:00");
+
+  const diff = evento - hoy;
+
+  if (diff <= 0) {
+    document.getElementById("contador").innerText = "🎉 ¡Hoy es el cumpleaños de Tahily! 🎉";
+    return;
+  }
+
+  const dias = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+  document.getElementById("contador").innerText = 
+    `⏳ Faltan ${dias} día${dias === 1 ? "" : "s"} para el cumpleaños`;
+}
+
+actualizarContador();
+setInterval(actualizarContador, 60 * 1000); // Actualiza cada minuto
+
 
 </script>
 
