@@ -91,21 +91,19 @@
     #toggleMusic{position:fixed;top:10px;right:10px;font-size:26px;background:none;border:none;z-index:100000;color:white;text-shadow:0 0 5px black}
 
     /* 🔥 NUEVO ESTILO DEL CONTADOR */
-    #contador{
-      font-size:1.7rem;
-      font-weight:700;
-      line-height:1.4;
-      padding:12px 18px;
-      border-radius:18px;
-      text-align: center;
-      align-items: center;
-      justify-content: center;
-      background:rgba(0,0,0,0.35);
-      color:white;
-      backdrop-filter:blur(5px);
-      display:flex;
-      margin-top:15px;
-    }
+    #contador {
+  display: block;         /* que sea un bloque para poder centrar con margin auto */
+  margin: 0 auto;         /* centra horizontalmente */
+  text-align: center;     /* centra el contenido interno */
+  padding: 10px 20px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: white;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(5px);
+  border-radius: 18px;
+}
+
   </style>
 </head>
 <body>
