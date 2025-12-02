@@ -186,34 +186,32 @@ document.querySelectorAll('.slider img').forEach(img=>{
 modal.onclick=()=>modal.style.display='none';
 
 /* MÚSICA */
-const music=document.getElementById('bg-music');
-const btn=document.getElementById('toggleMusic');
+/* MÚSICA */
+const music = document.getElementById('bg-music');
+const btn = document.getElementById('toggleMusic');
 let musicStarted = false;
 
-// Cuando el usuario toca por primera vez → habilitar música
-function startMusicOnce() {
+function activateAudio() {
   if (!musicStarted) {
-    music.play().catch(()=>{}); // algunos móviles bloquean si no hay interacción suficiente
-    musicStarted = true;
+    music.play().then(() => {
+      musicStarted = true;
+      btn.textContent = "🔊";
+    }).catch(() => {});
   }
 }
 
-document.addEventListener('touchstart', startMusicOnce, { once: true });
-document.addEventListener('touchend', startMusicOnce, { once: true });
-document.addEventListener('mousedown', startMusicOnce, { once: true });
-document.addEventListener('click', startMusicOnce, { once: true });
+// Disparar en cualquier interacción fuerte
+['click','touchstart','touchend','mousedown'].forEach(evt => {
+  document.addEventListener(evt, activateAudio, { once: true });
+});
 
-// Botón para reproducir / pausar
+// Botón manual
 btn.addEventListener('click', () => {
   if (!musicStarted) {
-    // Si nunca empezó, al tocar el botón tiene que reproducirse
-    music.play().catch(()=>{});
-    musicStarted = true;
-    btn.textContent = "🔊";
+    activateAudio();
     return;
   }
 
-  // Alternar play / pause
   if (music.paused) {
     music.play();
     btn.textContent = "🔊";
@@ -221,9 +219,8 @@ btn.addEventListener('click', () => {
     music.pause();
     btn.textContent = "🔇";
   }
-}
-                     
 });
+
 </script>
 
 </body>
