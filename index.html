@@ -227,48 +227,105 @@
 <div id="modal"><img id="modal-img"></div>
 
 <script>
-/* BURBUJAS */
-const cont=document.getElementById('bubble-container');
-for(let i=0;i<30;i++){
- let b=document.createElement('div');
- b.className='burbuja';
- b.style.left=Math.random()*100+'vw';
- b.style.width=b.style.height=(14+Math.random()*20)+'px';
- b.style.animationDuration=(10+Math.random()*10)+'s';
+/* -------------------- BURBUJAS -------------------- */
+const cont = document.getElementById('bubble-container');
+for (let i = 0; i < 30; i++) {
+  const b = document.createElement('div');
+  b.className = 'burbuja';
+  b.style.left = Math.random() * 100 + 'vw';
+  const size = 14 + Math.random() * 20;
+  b.style.width = b.style.height = size + 'px';
+  b.style.animationDuration = (10 + Math.random() * 10) + 's';
+  b.style.animationDelay = Math.random() * 6 + 's';
+  cont.appendChild(b);
 
-<script>
-// --- CONTROL DE MÚSICA GLOBAL ---
+  // opcional: remover después de su animación para no acumular nodos (no necesario, pero limpio)
+  setTimeout(() => b.remove(), (parseFloat(b.style.animationDuration) + parseFloat(b.style.animationDelay)) * 1000 + 2000);
+}
+
+/* -------------------- LUCES PARTICULAS -------------------- */
+const lightCont = document.getElementById('light-container');
+for (let i = 0; i < 40; i++) {
+  const p = document.createElement('div');
+  p.className = 'light';
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.top = Math.random() * 100 + 'vh';
+  p.style.opacity = (0.2 + Math.random() * 0.9).toString();
+  p.style.animationDuration = (6 + Math.random() * 6) + 's';
+  lightCont.appendChild(p);
+
+  setTimeout(() => p.remove(), (parseFloat(p.style.animationDuration) + 1) * 1000 + 2000);
+}
+
+/* -------------------- MODAL PARA IMÁGENES -------------------- */
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modal-img');
+document.querySelectorAll('.slider img').forEach(img => {
+  img.addEventListener('click', (e) => {
+    modal.style.display = 'flex';
+    modalImg.src = e.currentTarget.src;
+  });
+});
+modal.addEventListener('click', () => modal.style.display = 'none');
+
+/* -------------------- CONTROL DE MÚSICA -------------------- */
 const music = document.getElementById("bg-music");
 const toggleBtn = document.getElementById("toggleMusic");
 
-// Música comienza muteada para que el navegador permita iniciar después del click
-music.volume = 1;
+// inicialmente silenciar NO es obligatorio; dejamos sin mute.
+// pero por seguridad no confiamos en autoplay: reproducimos con interacción
 let musicEnabled = false;
 
-// 1) cualquier click/touch en la pantalla activa la música (solo la primera vez)
-function activarMusica() {
-    if (!musicEnabled) {
-        music.play().then(() => {
-            musicEnabled = true;
-            console.log("Música activada con interacción del usuario");
-        }).catch(e => console.log("Error al activar música:", e));
-    }
+function activarMusicaOnce() {
+  if (musicEnabled) return;
+  musicEnabled = true;
+  // Intentar reproducir; si el navegador bloquea, lo reportamos por consola
+  music.play().then(() => {
+    // ok
+  }).catch(err => {
+    console.log("El navegador impidió autoplay hasta interacción: ", err);
+  });
 }
 
-document.addEventListener("click", activarMusica);
-document.addEventListener("touchstart", activarMusica);
+// activar con el primer click o touch (una sola vez)
+const oneActiv = () => {
+  activarMusicaOnce();
+  // remover listeners para no llamar repetidamente
+  document.removeEventListener('click', oneActiv);
+  document.removeEventListener('touchstart', oneActiv);
+};
+document.addEventListener('click', oneActiv, { once: true });
+document.addEventListener('touchstart', oneActiv, { once: true });
 
-// 2) botón para mutear/encender
-toggleBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // evita que reinicie la música en cada click del botón
-
-    if (music.muted) {
-        music.muted = false;
-        toggleBtn.textContent = "🔊";
-    } else {
-        music.muted = true;
-        toggleBtn.textContent = "🔇";
-    }
+// Botón toggle: mute / unmute
+toggleBtn.addEventListener('click', (e) => {
+  e.stopPropagation(); // para que no re-dispare el listener global
+  // si aún no se habilitó música (sin interacción previa), primero activamos y luego muteamos si corresponde
+  if (!musicEnabled) {
+    activarMusicaOnce();
+  }
+  if (music.muted) {
+    music.muted = false;
+    toggleBtn.textContent = "🔊";
+  } else {
+    music.muted = true;
+    toggleBtn.textContent = "🔇";
+  }
 });
-</script>
 
+/* -------------------- CONTADOR (si no está definido o quedó cortado) -------------------- */
+if (!window._contadorSetup) {
+  window._contadorSetup = true;
+  const fecha = new Date("December 9, 2025 17:30:00").getTime();
+  const el = document.getElementById('contador');
+  setInterval(() => {
+    const diff = fecha - Date.now();
+    if (diff <= 0) { el.textContent = "¡Hoy es el gran día!"; return; }
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+    el.textContent = `${d}d ${h}h ${m}m ${s}s`;
+  }, 1000);
+}
+</script>
