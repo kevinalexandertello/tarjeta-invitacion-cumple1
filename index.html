@@ -199,6 +199,8 @@ function startMusicOnce() {
 }
 
 document.addEventListener('touchstart', startMusicOnce, { once: true });
+document.addEventListener('touchend', startMusicOnce, { once: true });
+document.addEventListener('mousedown', startMusicOnce, { once: true });
 document.addEventListener('click', startMusicOnce, { once: true });
 
 // Botón para reproducir / pausar
