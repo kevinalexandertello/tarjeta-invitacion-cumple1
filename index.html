@@ -155,6 +155,29 @@
   </style>
 </head>
 <body>
+<div id="start-music" style="
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  color: white;
+  font-size: 1.4rem;
+  text-align: center;
+  padding: 20px;
+">
+  <div style="
+    background: rgba(255,255,255,0.2);
+    border: 2px solid white;
+    padding: 20px 35px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+  ">
+    👉 Toca para activar la música 🎵
+  </div>
+</div>
 
 <!-- ANIMACIONES ENCIMA -->
 <div id="animaciones-top">
@@ -328,4 +351,18 @@ if (!window._contadorSetup) {
     el.textContent = `${d}d ${h}h ${m}m ${s}s`;
   }, 1000);
 }
+  /* BOTÓN DE ACTIVACIÓN MANUAL PARA MÓVILES */
+const startOverlay = document.getElementById("start-music");
+
+startOverlay.addEventListener("click", () => {
+  music.play()
+    .then(() => {
+      startOverlay.style.display = "none"; // ocultar overlay
+      musicEnabled = true;
+    })
+    .catch(err => {
+      console.log("Error de reproducción por restricciones del navegador:", err);
+    });
+});
+
 </script>
