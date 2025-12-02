@@ -5,139 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Primer Año de Tahily</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-
-    /* CONTENEDOR */
-.slider {
-  max-width: 320px;     /* antes 420px */
-  margin: 30px auto;
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-  padding: 10px;         /* espacio alrededor */
-  background: rgba(255,255,255,0.3);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 0 25px rgba(0,0,0,0.2);
-}
-
-/* IMÁGENES */
-.slider img {
-  width: 100%;
-  border-radius: 15px;
-  object-fit: cover;
-  transition: transform 0.8s ease, opacity 0.8s ease;
-  opacity: 0.9;
-}
-
-/* efecto de alejamiento */
-.slider img:hover {
-  transform: scale(0.95);
-  opacity: 1;
-}
-
-/* RESPONSIVE — más pequeño aún en móviles */
-@media (max-width: 600px) {
-  .slider {
-    max-width: 260px;
-    padding: 8px;
-  }
-  .slider img {
-    border-radius: 18px;
-  }
-}
-
-
-    /* Cambia las imágenes por las tuyas */
-/* Estas rutas deben apuntar a tus archivos en GitHub Pages */
-
-/* Sección MI PRIMER AÑO */
-#primer-anio.seccion-fondo::before {
-  background-image: url('img/fondo1.jpg'); /* cambia este archivo */
-}
-
-/* Sección UBICACIÓN */
-#ubicacion.seccion-fondo::before {
-  background-image: url('img/fondo2.jpg'); /* cambia este archivo */
-}
-
-/* Sección HORARIO */
-#horario.seccion-fondo::before {
-  background-image: url('img/fondo3.jpg'); /* cambia este archivo */
-}
-
-/* Sección CONFIRMAR */
-#confirmar.seccion-fondo::before {
-  background-image: url('img/fondo4.jpg'); /* cambia este archivo */
-}
-
-    /* 🔵 ESTILO DE FONDO PARA TODAS LAS SECCIONES */
-/* — Fondo con imagen completa + capa translúcida + borde acuarelado — */
-
-.seccion-fondo {
-  position: relative;
-  padding: 40px 20px;
-  border-radius: 25px;
-  overflow: hidden;
-  margin: 40px auto;
-}
-
-/* Imagen de fondo */
-.seccion-fondo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.9; /* qué tanto se ve la imagen */
-  z-index: -2;
-}
-
-/* Capa semi-transparente para mejorar legibilidad */
-.seccion-fondo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 40, 90, 0.35); /* azul marino suave */
-  backdrop-filter: blur(2px);
-  z-index: -1;
-}
-
-/* Bordes acuarelados */
-.seccion-fondo {
-  border: 6px solid rgba(255,255,255,0.45);
-  box-shadow: 0 0 25px rgba(0,0,0,0.25);
-}
-
-/* Texto asegurado visible */
-.seccion-fondo h2, 
-.seccion-fondo p, 
-.seccion-fondo a {
-  color: white !important;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-}
-
     body{
       margin:0;
       font-family:'Quicksand',sans-serif;
-
-      /* Fondo visible SIN degradado encima */
-      background-image:url("backgroundp.jpg");
+      background-image:url('backgroundp.jpg'); /* Cambia esta imagen del FONDO GENERAL */
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
-
-      /* Degradado suave como capa SEPARADA (no tapa tu imagen) */
       position:relative;
       overflow-x:hidden;
     }
 
-    /* Degradado animado flotante sin tapar imagen */
+    /* Capa de luz animada encima del fondo */
     body:before{
       content:"";
       position:fixed;
       inset:0;
-      background:linear-gradient(120deg,#8fd3ff80,#5ebdff80,#9fe0ff80);
+      background:linear-gradient(120deg,#8fd3ff70,#5ebdff70,#9fe0ff70);
       background-size:400% 400%;
       animation:mar 18s infinite;
       z-index:0;
@@ -146,229 +32,115 @@
 
     @keyframes mar{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
 
-    /* CONTENIDO ENCIMA */
-    .hero,.info-box{
-      border-radius:25px;
+    /* CAJA DE SECCIONES — puedes cambiar la imagen de cada sección */
+    .box{
       position:relative;
       margin:20px;
       padding:25px;
+      border-radius:25px;
       background:rgba(255,255,255,0.75);
-      backdrop-filter:blur(3px);
+      backdrop-filter:blur(4px);
       z-index:2;
     }
 
-    h1{font-family:'Fredoka One';font-size:2.4rem;text-align:center}
+    .box.bg1{background:rgba(255,255,255,0.78) url('fondo1.png') center/cover no-repeat;} /* Cambia imagen */
+    .box.bg2{background:rgba(255,255,255,0.78) url('fondo2.png') center/cover no-repeat;} /* Cambia imagen */
+    .box.bg3{background:rgba(255,255,255,0.78) url('fondo3.png') center/cover no-repeat;} /* Cambia imagen */
 
-    /* DOBLE CAPA DE OLAS */
+    h1{font-family:'Fredoka One';font-size:2.3rem;text-align:center;margin-top:10px}
+
+    /* --- WAVES --- */
     .waves{position:relative;height:200px;margin-top:40px;overflow:hidden;z-index:2}
-
-    .wave{
-      position:absolute;
-      bottom:0;
-      width:200%;
-      height:140px;
-      background:rgba(255,255,255,0.55);
-      border-radius:60%;
-      animation:waveMove 14s linear infinite;
-    }
-
+    .wave{position:absolute;bottom:0;width:200%;height:140px;background:rgba(255,255,255,0.55);border-radius:60%;animation:waveMove 14s linear infinite}
     .wave:nth-child(2){opacity:.45;animation-duration:20s;height:160px}
-
     @keyframes waveMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    /* BURBUJAS MÁS GRANDES */
-    .burbuja{
-      position:absolute;
-      bottom:-60px;
-      width:20px;
-      height:20px;
-      border-radius:50%;
-      background:rgba(255,255,255,0.6);
-      animation:bubble 14s infinite;
-      filter:blur(1px);
-    }
+    /* --- PARTICULAS, BURBUJAS, PECES --- */
+    #animaciones-top{position:fixed;inset:0;pointer-events:none;z-index:9999}
 
+    .burbuja{position:absolute;bottom:-60px;border-radius:50%;background:rgba(255,255,255,0.6);filter:blur(1px);animation:bubble 14s infinite}
     @keyframes bubble{0%{transform:translateY(0);opacity:.6}100%{transform:translateY(-140vh);opacity:0}}
 
-    /* PARTICULAS DE LUZ */
-    .light{
-      position:absolute;
-      width:6px;
-      height:6px;
-      background:rgba(255,255,255,0.9);
-      border-radius:50%;
-      box-shadow:0 0 12px white;
-      animation:lightfloat 10s infinite ease-in-out;
-    }
+    .light{position:absolute;width:7px;height:7px;background:rgba(255,255,255,.9);border-radius:50%;box-shadow:0 0 12px white;animation:lightfloat 10s infinite ease-in-out}
+    @keyframes lightfloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-80px) scale(1.4)}}
 
-    @keyframes lightfloat{
-      0%{transform:translateY(0) scale(1)}
-      50%{transform:translateY(-80px) scale(1.4)}
-      100%{transform:translateY(0) scale(1)}
-    }
-
-    /* PECES Y MEDUSAS */
     .fish{position:absolute;width:60px;height:30px;border-radius:40px;background:#ffe7a6;animation:swim 16s linear infinite;z-index:99999}
     .fish:before{content:"";position:absolute;right:-18px;top:6px;width:20px;height:18px;border-radius:50%;background:#ffd27a;animation:tail 1s infinite}
     .fish:after{content:"";position:absolute;left:10px;top:8px;width:8px;height:8px;border-radius:50%;background:#333}
-
-    @keyframes swim{
-      0%{transform:translateX(-120px) scaleX(1)}
-      50%{transform:translateX(100vw) scaleX(1)}
-      51%{transform:translateX(100vw) scaleX(-1)}
-      100%{transform:translateX(-120px) scaleX(-1)}
-    }
-
+    @keyframes swim{0%{transform:translateX(-120px) scaleX(1)}50%{transform:translateX(100vw) scaleX(1)}51%{transform:translateX(100vw) scaleX(-1)}100%{transform:translateX(-120px) scaleX(-1)}}
     @keyframes tail{0%,100%{transform:rotate(18deg)}50%{transform:rotate(0)}}
 
-    .fish.big{width:80px;height:40px}
-    .fish.small{width:40px;height:20px}
-
-    .jelly{position:absolute;width:40px;height:50px;background:#ffb5e8;border-radius:50% 50% 40% 40%;opacity:.85;animation:jellyMove 20s linear infinite;z-index:99999}
+    .jelly{position:absolute;width:40px;height:50px;background:#ffb5e8;border-radius:50% 50% 40% 40%;opacity:.85;animation:jelly 20s linear infinite}
     .jelly:after{content:"";position:absolute;bottom:-20px;left:10px;width:20px;height:20px;border-radius:50%;background:#ff9fd9;filter:blur(2px)}
+    @keyframes jelly{0%{transform:translateY(0)}50%{transform:translateY(-40px)}100%{transform:translateY(0)}}
 
-    @keyframes jellyMove{0%{transform:translateY(0)}50%{transform:translateY(-40px)}100%{transform:translateY(0)}}
+    /* --- GALERÍA / CARRUSEL --- */
+    .slider{max-width:380px;margin:40px auto;border-radius:18px;overflow:hidden;position:relative;z-index:2;box-shadow:0 4px 20px rgba(0,0,0,.25)}
+    .track{display:flex;animation:scroll 80s linear infinite}
+    .slider img{width:100%;object-fit:cover;transition:transform .5s ease;border-radius:15px}
+    .slider img:hover{transform:scale(1.05)}
 
-    /* SLIDER QUE MUESTRA TODAS LAS FOTOS */
-    .slider{
-      max-width:420px;
-      margin:40px auto;
-      border-radius:20px;
-      overflow:hidden;
-      z-index:2;
-      position:relative;
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+    /* fotos menos invasivas en móviles */
+    @media(max-width:600px){
+      .slider{max-width:80%;margin-top:20px}
+      .slider img{border-radius:12px}
     }
 
-    .track {
-  display: flex;
-  width: max-content;
-  animation: scrollSmooth 40s linear infinite;
-  gap: 15px;   /* separa un poquito las fotos */
-}
-
-@keyframes scrollSmooth {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Efecto de fade al cambiar foto */
-.slider img {
-  animation: fadeIn 1s ease forwards;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; transform: scale(1.05); }
-  100% { opacity: 0.95; transform: scale(1); }
-}
-.slider {
-  transform: scale(0.9);
-}
-
-
-    #modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:999999}
+    /* MODAL */
+    #modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:99999}
     #modal img{max-width:90%;border-radius:20px}
 
-    /* CONTENEDOR ANIMACIONES ENCIMA DE TODO */
-    #animaciones-top{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:99999;
-    }
-
+    /* BOTÓN MÚSICA */
+    #toggleMusic{position:fixed;top:10px;right:10px;font-size:26px;background:none;border:none;z-index:100000;color:white;text-shadow:0 0 5px black}
   </style>
 </head>
 <body>
-<div id="start-music" style="
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.6);
-  z-index: 9999;
-  color: white;
-  font-size: 1.4rem;
-  text-align: center;
-  padding: 20px;
-">
-  <div style="
-    background: rgba(255,255,255,0.2);
-    border: 2px solid white;
-    padding: 20px 35px;
-    border-radius: 20px;
-    backdrop-filter: blur(5px);
-  ">
-    👉 Toca para activar la música 🎵
-  </div>
-</div>
 
-<!-- ANIMACIONES ENCIMA -->
+<!-- ANIMACIONES -->
 <div id="animaciones-top">
   <div id="bubble-container"></div>
   <div id="light-container"></div>
-
   <div class="fish" style="top:20%;animation-duration:18s"></div>
-  <div class="fish big" style="top:55%;animation-duration:22s"></div>
-  <div class="fish small" style="top:75%;animation-duration:20s"></div>
-
-  <div class="jelly" style="top:35%;left:20%;animation-duration:26s"></div>
+  <div class="fish" style="top:55%;animation-duration:22s"></div>
+  <div class="fish" style="top:75%;animation-duration:20s"></div>
+  <div class="jelly" style="top:30%;left:20%;animation-duration:26s"></div>
   <div class="jelly" style="top:60%;left:70%;animation-duration:30s"></div>
 </div>
 
-<audio id="bg-music" src="songta.m4a" autoplay loop></audio>
-<button id="toggleMusic" style="position:fixed;top:10px;right:10px;font-size:26px;background:none;border:none;z-index:999999">🔊</button>
+<audio id="bg-music" src="songta.m4a" loop></audio>
+<button id="toggleMusic">🔊</button>
 
-<section class="hero">
-  <section id="primer-anio" class="seccion-fondo">
+<div class="box bg1">
   <h1>Mi Primer Año: Tahily</h1>
   <p style="text-align:center">¡Ven a celebrar este día tan especial!</p>
-  <div id="contador" style="text-align:center;font-size:1.3rem;font-weight:bold"></div>
-</section>
+</div>
 
-<section class="info-box">
-  <section id="ubicacion" class="seccion-fondo">
+<div class="box bg2">
   <h2>📍 Dirección</h2>
   <p>Videla 65</p>
   <a href="https://maps.app.goo.gl/75C3GWKKCqGDRBM1A" target="_blank">Ver Ubicación</a>
-</section>
+</div>
 
-<section class="info-box">
-  <section id="horario" class="seccion-fondo">
+<div class="box bg2">
   <h2>🕓 Horario</h2>
   <p>17:30 a 20:00 hs</p>
-</section>
+</div>
 
+<!-- GALERIA -->
 <div class="slider">
   <div class="track">
-    <img src="FOTO1.jpeg">
-    <img src="FOTO2.jpeg">
-    <img src="FOTO3.jpeg">
-    <img src="FOTO4.jpeg">
-    <img src="FOTO5.jpeg">
-    <img src="FOTO6.jpeg">
-    <img src="FOTO7.jpeg">
-    <img src="FOTO8.jpeg">
-    <img src="FOTO9.jpeg">
-    <img src="FOTO10.jpeg">
-    <img src="FOTO11.jpeg">
-    <img src="FOTO12.jpeg">
-    <img src="FOTO13.jpeg">
-    <img src="FOTO14.jpeg">
-    <img src="FOTO15.jpeg">
-    <img src="FOTO16.jpeg">
-    <img src="FOTO17.jpeg">
-    <img src="FOTO18.jpeg">
-    <img src="FOTO19.jpeg">
-    <img src="FOTO20.jpeg">
+    <img src="FOTO1.jpeg"><img src="FOTO2.jpeg"><img src="FOTO3.jpeg"><img src="FOTO4.jpeg"><img src="FOTO5.jpeg">
+    <img src="FOTO6.jpeg"><img src="FOTO7.jpeg"><img src="FOTO8.jpeg"><img src="FOTO9.jpeg"><img src="FOTO10.jpeg">
+    <img src="FOTO11.jpeg"><img src="FOTO12.jpeg"><img src="FOTO13.jpeg"><img src="FOTO14.jpeg"><img src="FOTO15.jpeg">
   </div>
 </div>
 
-<section class="info-box">
-  <section id="confirmar" class="seccion-fondo">
+<div class="box bg3">
   <h2>📞 Confirmar Asistencia</h2>
-  <p><a href="https://wa.me/542612519528">WhatsApp</a></p>
-</section>
+  <a href="https://wa.me/542612519528">WhatsApp</a>
+</div>
 
 <div class="waves">
   <div class="wave"></div>
@@ -378,119 +150,56 @@
 <div id="modal"><img id="modal-img"></div>
 
 <script>
-/* -------------------- BURBUJAS -------------------- */
-const cont = document.getElementById('bubble-container');
-for (let i = 0; i < 30; i++) {
-  const b = document.createElement('div');
-  b.className = 'burbuja';
-  b.style.left = Math.random() * 100 + 'vw';
-  const size = 14 + Math.random() * 20;
-  b.style.width = b.style.height = size + 'px';
-  b.style.animationDuration = (10 + Math.random() * 10) + 's';
-  b.style.animationDelay = Math.random() * 6 + 's';
-  cont.appendChild(b);
-
-  // opcional: remover después de su animación para no acumular nodos (no necesario, pero limpio)
-  setTimeout(() => b.remove(), (parseFloat(b.style.animationDuration) + parseFloat(b.style.animationDelay)) * 1000 + 2000);
+/* BURBUJAS */
+const cont=document.getElementById('bubble-container');
+for(let i=0;i<40;i++){
+ let b=document.createElement('div');
+ b.className='burbuja';
+ b.style.left=Math.random()*100+'vw';
+ b.style.width=b.style.height=(18+Math.random()*25)+'px';
+ b.style.animationDuration=(10+Math.random()*10)+'s';
+ cont.appendChild(b);
 }
 
-/* -------------------- LUCES PARTICULAS -------------------- */
-const lightCont = document.getElementById('light-container');
-for (let i = 0; i < 40; i++) {
-  const p = document.createElement('div');
-  p.className = 'light';
-  p.style.left = Math.random() * 100 + 'vw';
-  p.style.top = Math.random() * 100 + 'vh';
-  p.style.opacity = (0.2 + Math.random() * 0.9).toString();
-  p.style.animationDuration = (6 + Math.random() * 6) + 's';
-  lightCont.appendChild(p);
-
-  setTimeout(() => p.remove(), (parseFloat(p.style.animationDuration) + 1) * 1000 + 2000);
+/* LUCES */
+const light=document.getElementById('light-container');
+for(let i=0;i<20;i++){
+ let l=document.createElement('div');
+ l.className='light';
+ l.style.left=Math.random()*100+'vw';
+ l.style.top=Math.random()*100+'vh';
+ l.style.animationDuration=(6+Math.random()*6)+'s';
+ light.appendChild(l);
 }
 
-/* -------------------- MODAL PARA IMÁGENES -------------------- */
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modal-img');
-document.querySelectorAll('.slider img').forEach(img => {
-  img.addEventListener('click', (e) => {
-    modal.style.display = 'flex';
-    modalImg.src = e.currentTarget.src;
-  });
+/* MODAL FOTOS */
+const modal=document.getElementById('modal');
+const modalImg=document.getElementById('modal-img');
+document.querySelectorAll('.slider img').forEach(img=>{
+ img.addEventListener('click',()=>{
+   modalImg.src=img.src;
+   modal.style.display='flex';
+ });
 });
-modal.addEventListener('click', () => modal.style.display = 'none');
+modal.onclick=()=>modal.style.display='none';
 
-/* -------------------- CONTROL DE MÚSICA -------------------- */
-const music = document.getElementById("bg-music");
-const toggleBtn = document.getElementById("toggleMusic");
+/* MUSICA PARA MOVILES */
+const music=document.getElementById('bg-music');
+const btn=document.getElementById('toggleMusic');
+let unlocked=false;
 
-// inicialmente silenciar NO es obligatorio; dejamos sin mute.
-// pero por seguridad no confiamos en autoplay: reproducimos con interacción
-let musicEnabled = false;
-
-function activarMusicaOnce() {
-  if (musicEnabled) return;
-  musicEnabled = true;
-  // Intentar reproducir; si el navegador bloquea, lo reportamos por consola
-  music.play().then(() => {
-    // ok
-  }).catch(err => {
-    console.log("El navegador impidió autoplay hasta interacción: ", err);
-  });
+function activarMusica(){
+ if(!unlocked){music.play();unlocked=true;}
 }
 
-// activar con el primer click o touch (una sola vez)
-const oneActiv = () => {
-  activarMusicaOnce();
-  // remover listeners para no llamar repetidamente
-  document.removeEventListener('click', oneActiv);
-  document.removeEventListener('touchstart', oneActiv);
+document.body.addEventListener('touchstart',activarMusica,{once:true});
+document.body.addEventListener('click',activarMusica,{once:true});
+
+btn.onclick=()=>{
+ music.muted=!music.muted;
+ btn.textContent=music.muted?'🔇':'🔊';
 };
-document.addEventListener('click', oneActiv, { once: true });
-document.addEventListener('touchstart', oneActiv, { once: true });
-
-// Botón toggle: mute / unmute
-toggleBtn.addEventListener('click', (e) => {
-  e.stopPropagation(); // para que no re-dispare el listener global
-  // si aún no se habilitó música (sin interacción previa), primero activamos y luego muteamos si corresponde
-  if (!musicEnabled) {
-    activarMusicaOnce();
-  }
-  if (music.muted) {
-    music.muted = false;
-    toggleBtn.textContent = "🔊";
-  } else {
-    music.muted = true;
-    toggleBtn.textContent = "🔇";
-  }
-});
-
-/* -------------------- CONTADOR (si no está definido o quedó cortado) -------------------- */
-if (!window._contadorSetup) {
-  window._contadorSetup = true;
-  const fecha = new Date("December 9, 2025 17:30:00").getTime();
-  const el = document.getElementById('contador');
-  setInterval(() => {
-    const diff = fecha - Date.now();
-    if (diff <= 0) { el.textContent = "¡Hoy es el gran día!"; return; }
-    const d = Math.floor(diff / (1000*60*60*24));
-    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const s = Math.floor((diff % (1000*60)) / 1000);
-    el.textContent = `${d}d ${h}h ${m}m ${s}s`;
-  }, 1000);
-}
-  /* BOTÓN DE ACTIVACIÓN MANUAL PARA MÓVILES */
-const startOverlay = document.getElementById("start-music");
-
-startOverlay.addEventListener("click", () => {
-  music.play()
-    .then(() => {
-      startOverlay.style.display = "none"; // ocultar overlay
-      musicEnabled = true;
-    })
-    .catch(err => {
-      console.log("Error de reproducción por restricciones del navegador:", err);
-    });
-});
-
 </script>
+
+</body>
+</html>
