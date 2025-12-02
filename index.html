@@ -10,7 +10,7 @@
     body{
       margin:0;
       font-family:'Quicksand',sans-serif;
-      background-image:url('backgroundp.jpg'); /* Cambia esta imagen del FONDO GENERAL */
+      background-image:url('backgroundp.jpg');
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
@@ -18,7 +18,6 @@
       overflow-x:hidden;
     }
 
-    /* Capa de luz animada encima del fondo */
     body:before{
       content:"";
       position:fixed;
@@ -32,7 +31,6 @@
 
     @keyframes mar{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
 
-    /* CAJA DE SECCIONES — puedes cambiar la imagen de cada sección */
     .box{
       position:relative;
       margin:20px;
@@ -43,10 +41,10 @@
       z-index:2;
     }
 
-    .box.bg1{background:rgba(255,255,255,0.78) url('FONDO1.jpg') center/cover no-repeat;} /* Cambia imagen */
-    .box.bg2{background:rgba(255,255,255,0.78) url('FONDO2.png') center/cover no-repeat;} /* Cambia imagen */
-    .box.bg3{background:rgba(255,255,255,0.78) url('FONDO4.jpg') center/cover no-repeat;} /* Cambia imagen */
-    .box.bg4{background:rgba(255,255,255,0.78) url('FONDO5.jpg') center/cover no-repeat;} /* Cambia imagen */
+    .box.bg1{background:rgba(255,255,255,0.78) url('FONDO1.jpg') center/cover no-repeat;}
+    .box.bg2{background:rgba(255,255,255,0.78) url('FONDO2.png') center/cover no-repeat;}
+    .box.bg3{background:rgba(255,255,255,0.78) url('FONDO4.jpg') center/cover no-repeat;}
+    .box.bg4{background:rgba(255,255,255,0.78) url('FONDO5.jpg') center/cover no-repeat;}
 
     h1{font-family:'Fredoka One';font-size:2.3rem;text-align:center;margin-top:10px}
 
@@ -56,7 +54,7 @@
     .wave:nth-child(2){opacity:.45;animation-duration:20s;height:160px}
     @keyframes waveMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    /* --- PARTICULAS, BURBUJAS, PECES --- */
+    /* --- PARTICULAS --- */
     #animaciones-top{position:fixed;inset:0;pointer-events:none;z-index:9999}
 
     .burbuja{position:absolute;bottom:-60px;border-radius:50%;background:rgba(255,255,255,0.6);filter:blur(1px);animation:bubble 14s infinite}
@@ -75,26 +73,36 @@
     .jelly:after{content:"";position:absolute;bottom:-20px;left:10px;width:20px;height:20px;border-radius:50%;background:#ff9fd9;filter:blur(2px)}
     @keyframes jelly{0%{transform:translateY(0)}50%{transform:translateY(-40px)}100%{transform:translateY(0)}}
 
-    /* --- GALERÍA / CARRUSEL --- */
+    /* --- GALERIA --- */
     .slider{max-width:380px;margin:40px auto;border-radius:18px;overflow:hidden;position:relative;z-index:2;box-shadow:0 4px 20px rgba(0,0,0,.25)}
     .track{display:flex;animation:scroll 140s linear infinite}
     .slider img{width:100%;object-fit:cover;transition:transform .5s ease;border-radius:15px}
     .slider img:hover{transform:scale(1.05)}
-
     @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-2000%)}}
 
-    /* fotos menos invasivas en móviles */
     @media(max-width:600px){
       .slider{max-width:80%;margin-top:20px}
       .slider img{border-radius:12px}
     }
 
-    /* MODAL */
     #modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:99999}
     #modal img{max-width:90%;border-radius:20px}
 
-    /* BOTÓN MÚSICA */
     #toggleMusic{position:fixed;top:10px;right:10px;font-size:26px;background:none;border:none;z-index:100000;color:white;text-shadow:0 0 5px black}
+
+    /* 🔥 NUEVO ESTILO DEL CONTADOR */
+    #contador{
+      font-size:1.7rem;
+      font-weight:700;
+      line-height:1.4;
+      padding:12px 18px;
+      border-radius:18px;
+      background:rgba(0,0,0,0.35);
+      color:white;
+      backdrop-filter:blur(5px);
+      display:inline-block;
+      margin-top:15px;
+    }
   </style>
 </head>
 <body>
@@ -116,10 +124,8 @@
 <div class="box bg1">
   <h1>Mi Primer Año: Tahily</h1>
   <p style="text-align:center">¡Ven a celebrar este día tan especial el 9 de Diciembre!</p>
-  <div id="contador" style="text-align:center;font-size:1.3rem;font-weight:600;margin-top:10px;">
-  Cargando días restantes...
-</div>
 
+  <div id="contador">Cargando...</div>
 </div>
 
 <div class="box bg2">
@@ -133,13 +139,15 @@
   <p>17:30 a 20:00 hs</p>
 </div>
 
-<!-- GALERIA -->
 <div class="slider">
   <div class="track">
-    <img src="FOTO1.jpeg"><img src="FOTO2.jpeg"><img src="FOTO3.jpeg"><img src="FOTO4.jpeg"><img src="FOTO5.jpeg">
-    <img src="FOTO6.jpeg"><img src="FOTO7.jpeg"><img src="FOTO8.jpeg"><img src="FOTO9.jpeg"><img src="FOTO10.jpeg">
-    <img src="FOTO11.jpeg"><img src="FOTO12.jpeg"><img src="FOTO13.jpeg"><img src="FOTO14.jpeg"><img src="FOTO15.jpeg">
-     <img src="FOTO16.jpeg"><img src="FOTO17.jpeg"><img src="FOTO18.jpeg"><img src="FOTO19.jpeg"><img src="FOTO20.jpeg">
+    <img src="FOTO1.jpeg"><img src="FOTO2.jpeg"><img src="FOTO3.jpeg">
+    <img src="FOTO4.jpeg"><img src="FOTO5.jpeg"><img src="FOTO6.jpeg">
+    <img src="FOTO7.jpeg"><img src="FOTO8.jpeg"><img src="FOTO9.jpeg">
+    <img src="FOTO10.jpeg"><img src="FOTO11.jpeg"><img src="FOTO12.jpeg">
+    <img src="FOTO13.jpeg"><img src="FOTO14.jpeg"><img src="FOTO15.jpeg">
+    <img src="FOTO16.jpeg"><img src="FOTO17.jpeg"><img src="FOTO18.jpeg">
+    <img src="FOTO19.jpeg"><img src="FOTO20.jpeg">
   </div>
 </div>
 
@@ -178,7 +186,7 @@ for(let i=0;i<20;i++){
  light.appendChild(l);
 }
 
-/* MODAL FOTOS */
+/* MODAL */
 const modal=document.getElementById('modal');
 const modalImg=document.getElementById('modal-img');
 document.querySelectorAll('.slider img').forEach(img=>{
@@ -189,7 +197,6 @@ document.querySelectorAll('.slider img').forEach(img=>{
 });
 modal.onclick=()=>modal.style.display='none';
 
-/* MÚSICA */
 /* MÚSICA */
 const music = document.getElementById('bg-music');
 const btn = document.getElementById('toggleMusic');
@@ -204,12 +211,10 @@ function activateAudio() {
   }
 }
 
-// Disparar en cualquier interacción fuerte
 ['click','touchstart','touchend','mousedown'].forEach(evt => {
   document.addEventListener(evt, activateAudio, { once: true });
 });
 
-// Botón manual
 btn.addEventListener('click', () => {
   if (!musicStarted) {
     activateAudio();
@@ -224,29 +229,36 @@ btn.addEventListener('click', () => {
     btn.textContent = "🔇";
   }
 });
-  /* CONTADOR DE DÍAS */
+
+/* ⭐ NUEVO CONTADOR COMPLETO ⭐ */
 function actualizarContador() {
   const hoy = new Date();
-  const evento = new Date("2025-12-09T00:00:00");
+  const evento = new Date("2025-12-09T17:30:00");
 
   const diff = evento - hoy;
+  const cont = document.getElementById("contador");
 
   if (diff <= 0) {
-    document.getElementById("contador").innerText = "🎉 ¡Hoy es el cumpleaños de Tahily! 🎉";
+    cont.innerHTML = "🎉 ¡Hoy celebramos el cumple de Tahily! 🎉";
     return;
   }
 
-  const dias = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutos = Math.floor((diff / (1000 * 60)) % 60);
+  const segundos = Math.floor((diff / 1000) % 60);
 
-  document.getElementById("contador").innerText = 
-    `⏳ Faltan ${dias} día${dias === 1 ? "" : "s"} para el cumpleaños`;
+  cont.innerHTML = `
+    Faltan <br>
+    <b>${dias}</b> días <br>
+    ${horas}h : ${minutos}m : ${segundos}s
+  `;
 }
 
 actualizarContador();
-setInterval(actualizarContador, 60 * 1000); // Actualiza cada minuto
-
-
+setInterval(actualizarContador, 1000);
 </script>
 
 </body>
 </html>
+
