@@ -6,6 +6,117 @@
   <title>Primer Año de Tahily</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <style>
+
+    /* CONTENEDOR */
+.slider {
+  max-width: 320px;     /* antes 420px */
+  margin: 30px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  padding: 10px;         /* espacio alrededor */
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
+}
+
+/* IMÁGENES */
+.slider img {
+  width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  opacity: 0.9;
+}
+
+/* efecto de alejamiento */
+.slider img:hover {
+  transform: scale(0.95);
+  opacity: 1;
+}
+
+/* RESPONSIVE — más pequeño aún en móviles */
+@media (max-width: 600px) {
+  .slider {
+    max-width: 260px;
+    padding: 8px;
+  }
+  .slider img {
+    border-radius: 18px;
+  }
+}
+
+
+    /* Cambia las imágenes por las tuyas */
+/* Estas rutas deben apuntar a tus archivos en GitHub Pages */
+
+/* Sección MI PRIMER AÑO */
+#primer-anio.seccion-fondo::before {
+  background-image: url('img/fondo1.jpg'); /* cambia este archivo */
+}
+
+/* Sección UBICACIÓN */
+#ubicacion.seccion-fondo::before {
+  background-image: url('img/fondo2.jpg'); /* cambia este archivo */
+}
+
+/* Sección HORARIO */
+#horario.seccion-fondo::before {
+  background-image: url('img/fondo3.jpg'); /* cambia este archivo */
+}
+
+/* Sección CONFIRMAR */
+#confirmar.seccion-fondo::before {
+  background-image: url('img/fondo4.jpg'); /* cambia este archivo */
+}
+
+    /* 🔵 ESTILO DE FONDO PARA TODAS LAS SECCIONES */
+/* — Fondo con imagen completa + capa translúcida + borde acuarelado — */
+
+.seccion-fondo {
+  position: relative;
+  padding: 40px 20px;
+  border-radius: 25px;
+  overflow: hidden;
+  margin: 40px auto;
+}
+
+/* Imagen de fondo */
+.seccion-fondo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.9; /* qué tanto se ve la imagen */
+  z-index: -2;
+}
+
+/* Capa semi-transparente para mejorar legibilidad */
+.seccion-fondo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 40, 90, 0.35); /* azul marino suave */
+  backdrop-filter: blur(2px);
+  z-index: -1;
+}
+
+/* Bordes acuarelados */
+.seccion-fondo {
+  border: 6px solid rgba(255,255,255,0.45);
+  box-shadow: 0 0 25px rgba(0,0,0,0.25);
+}
+
+/* Texto asegurado visible */
+.seccion-fondo h2, 
+.seccion-fondo p, 
+.seccion-fondo a {
+  color: white !important;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
     body{
       margin:0;
       font-family:'Quicksand',sans-serif;
@@ -128,18 +239,31 @@
       position:relative;
     }
 
-    .track{
-      display:flex;
-      width:2000%; /* 20 fotos = 2000% */
-      animation:scroll 120s linear infinite; /* 120s para ver TODAS las fotos */
-    }
+    .track {
+  display: flex;
+  width: max-content;
+  animation: scrollSmooth 40s linear infinite;
+  gap: 15px;   /* separa un poquito las fotos */
+}
 
-    @keyframes scroll{
-      from{transform:translateX(0)}
-      to{transform:translateX(-100%)} /* Recorre TODA la tira */
-    }
+@keyframes scrollSmooth {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
-    .slider img{width:100%;object-fit:cover;cursor:pointer}
+/* Efecto de fade al cambiar foto */
+.slider img {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(1.05); }
+  100% { opacity: 0.95; transform: scale(1); }
+}
+.slider {
+  transform: scale(0.9);
+}
+
 
     #modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:999999}
     #modal img{max-width:90%;border-radius:20px}
@@ -196,18 +320,21 @@
 <button id="toggleMusic" style="position:fixed;top:10px;right:10px;font-size:26px;background:none;border:none;z-index:999999">🔊</button>
 
 <section class="hero">
+  <section id="primer-anio" class="seccion-fondo">
   <h1>Mi Primer Año: Tahily</h1>
   <p style="text-align:center">¡Ven a celebrar este día tan especial!</p>
   <div id="contador" style="text-align:center;font-size:1.3rem;font-weight:bold"></div>
 </section>
 
 <section class="info-box">
+  <section id="ubicacion" class="seccion-fondo">
   <h2>📍 Dirección</h2>
   <p>Videla 65</p>
   <a href="https://maps.app.goo.gl/75C3GWKKCqGDRBM1A" target="_blank">Ver Ubicación</a>
 </section>
 
 <section class="info-box">
+  <section id="horario" class="seccion-fondo">
   <h2>🕓 Horario</h2>
   <p>17:30 a 20:00 hs</p>
 </section>
@@ -238,6 +365,7 @@
 </div>
 
 <section class="info-box">
+  <section id="confirmar" class="seccion-fondo">
   <h2>📞 Confirmar Asistencia</h2>
   <p><a href="https://wa.me/542612519528">WhatsApp</a></p>
 </section>
