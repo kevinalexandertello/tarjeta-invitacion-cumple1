@@ -235,3 +235,40 @@ for(let i=0;i<30;i++){
  b.style.left=Math.random()*100+'vw';
  b.style.width=b.style.height=(14+Math.random()*20)+'px';
  b.style.animationDuration=(10+Math.random()*10)+'s';
+
+<script>
+// --- CONTROL DE MÚSICA GLOBAL ---
+const music = document.getElementById("bg-music");
+const toggleBtn = document.getElementById("toggleMusic");
+
+// Música comienza muteada para que el navegador permita iniciar después del click
+music.volume = 1;
+let musicEnabled = false;
+
+// 1) cualquier click/touch en la pantalla activa la música (solo la primera vez)
+function activarMusica() {
+    if (!musicEnabled) {
+        music.play().then(() => {
+            musicEnabled = true;
+            console.log("Música activada con interacción del usuario");
+        }).catch(e => console.log("Error al activar música:", e));
+    }
+}
+
+document.addEventListener("click", activarMusica);
+document.addEventListener("touchstart", activarMusica);
+
+// 2) botón para mutear/encender
+toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // evita que reinicie la música en cada click del botón
+
+    if (music.muted) {
+        music.muted = false;
+        toggleBtn.textContent = "🔊";
+    } else {
+        music.muted = true;
+        toggleBtn.textContent = "🔇";
+    }
+});
+</script>
+
